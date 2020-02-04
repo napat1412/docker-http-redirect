@@ -18,6 +18,6 @@ The http-redirect server bypass traffic that X-forward-proto=https but it redire
 $ docker run -d -p 8081:81 \
              -e PROXY_PORT=81 \
              -e BACKEND_HOST=192.168.1.2 \
-             -e BECKEND_PORT=80
+             -e BECKEND_PORT=80 \
              nginx-http-redirect
 ```
