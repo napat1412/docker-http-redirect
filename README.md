@@ -13,7 +13,7 @@ $ docker build -t nginx-http-redirect .
 
 **Assumption**  
 [https off-load server] <---X-forward-proto http,https---> [http-redirect server:8081] <------> [backend server:80]
-The http-redirect server bypass traffic that X-forward-proto=https but it redirest traffic that X-forward-proto=http with nginx rewirte command to HTTPS-URL.
+The http-redirect server bypass traffic that X-forward-proto=https but it redirect traffic that X-forward-proto=http with http_code 301 to HTTPS location.
 ```bash
 $ docker run -d -p 8081:81 \
              -e PROXY_PORT=81 \
