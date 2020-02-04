@@ -1,6 +1,6 @@
-# Docker basic authorization proxy
+# Docker http redirect
 
-This dockerfile build nginx for redirect http to https and bypass https to https by scheme.
+This dockerfile build nginx for redirect http to https and bypass https to https that depend on X-forwarded-proto.
 
 ## Build
 
@@ -12,8 +12,8 @@ $ docker build -t nginx-http-redirect .
 ## Run
 
 **Assumption**  
-[https off-load server] <---X-forward-proto http,https---> [http-redirect server:8081] <------> [backend server:80]
-The http-redirect server bypass traffic that X-forward-proto=https but it redirect traffic that X-forward-proto=http with http_code 301 to HTTPS location.
+[https off-load server] <---X-forwarded-proto http,https---> [http-redirect server:8081] <------> [backend server:80]
+The http-redirect server bypass traffic that X-forwarded-proto=https but it redirect traffic that X-forwarded-proto=http with http_code 301 to HTTPS location.
 ```bash
 $ docker run -d -p 8081:81 \
              -e PROXY_PORT=81 \
